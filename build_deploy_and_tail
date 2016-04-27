@@ -1,0 +1,2 @@
+#!/bin/bash
+mvn install && cp pcc-portletapp/target/pcc-portletapp-1.0-SNAPSHOT.war ../../liferay6210/portal6210/deploy/ ; tail -f ../../liferay6210/portal6210/tomcat-7.0.42/logs/pcc.log

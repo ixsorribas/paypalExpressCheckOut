@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Build-Timestamp: 
+Implementation-Title: PayPalExpressCheckOut Remote Services
+Implementation-Version: 1.0
+Os-Version: 6.1
+Built-By: i.sorribas
+Created-By: Maven Integration for Eclipse
+Os-Name: Windows 7
+Java-Vendor: Oracle Corporation
+Implementation-Vendor-Id: net.indaba.paypal.service
+Scm-Url: 
+Build-Jdk: 1.7.0_71
+Java-Version: 1.8
+Scm-Connection: 
+Os-Arch: amd64
+Specification-Title: PayPalExpressCheckOut Remote Services
+Specification-Version: 1.0
+

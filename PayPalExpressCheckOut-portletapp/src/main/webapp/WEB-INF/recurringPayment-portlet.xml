@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Definimos acceso a las propiedades del sistema -->
+	<bean id="launcher.propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesMode">
+			<!-- SYSTEM_PROPERTIES_MODE_FALLBACK = 1 -->
+			<value>1</value>
+		</property>
+	</bean>
+
+	<!-- Root Context: defines shared resources visible to all Portlets -->
+
+	<!-- Para que Spring sepa que vamos a usar anotaciones -->
+	<context:annotation-config />
+
+	<!-- Especificamos el paquete a escanear con los servicios de la applicacion 
+		de portlets. Importante que los component scan sean controlados para solo 
+		importar aquello que queremos. En este caso configuramos para cargar el paquete 
+		config que contiene las clases anotadas que configuran el portlet. -->
+	<bean class="net.indaba.paypal.portlet.recurringPayment.RecurringPaymentConfiguration" />
+
+	<!-- Default View Resolver -->
+	<!-- Maps logical view names selected by the url filename controller to 
+		.jsp view templates within the /WEB-INF directory -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/recurringPayment/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="recurringPayment/messages" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	<!-- Exception Handling -->
+	<bean
+		class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

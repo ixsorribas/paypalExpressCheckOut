@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ## APPENDER ############################## -->
+	<appender name="FICHERO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/payPal.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<param name="ImmediateFlush" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p [%c] ==> %m%n" />
+		</layout>
+	</appender>
+
+	<!-- ## LOGGER ################################ -->
+	<logger name="net.indaba.paypal.portlet" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="FICHERO" />
+	</logger>
+	<logger name="org.springframework" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="FICHERO" />
+	</logger>
+
+	<!-- ## MAIN LOGGER ########################### -->
+	<root>
+		<!-- all|debug|info|warn|error|fatal|off|null -->
+		<priority value="ERROR" />
+		<appender-ref ref="FICHERO" />
+	</root>
+</log4j:configuration>

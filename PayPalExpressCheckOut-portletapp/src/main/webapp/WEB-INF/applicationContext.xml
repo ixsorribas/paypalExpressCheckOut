@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">  
+  
+  	<!-- Definimos acceso a las propiedades del sistema -->
+ 	<bean id="launcher.propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesMode">
+			<!-- SYSTEM_PROPERTIES_MODE_FALLBACK = 1 -->
+			<value>1</value>
+		</property>
+	</bean>
+	
+  	<!-- Root Context: defines shared resources visible to all Portlets -->
+    
+    <!-- Para que Spring sepa que vamos a usar anotaciones -->  
+    <context:annotation-config />  
+  
+    <!-- Especificamos el Bean @Configuration con los servicios de la applicacion de portlets. -->
+    <bean class="net.indaba.paypal.portlet.config.ApplicationConfiguration" />
+
+</beans> 
